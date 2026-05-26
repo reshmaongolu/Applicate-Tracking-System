@@ -30,7 +30,14 @@ def candidates():
 @app.route("/jobs")
 def jobs():
     service = get_service()
-    return render_template("jobs.html", jobs=service.list_jobs())
+    search_role = request.args.get("role", "").strip()
+
+    if search_role:
+        jobs = service.search_jobs(search_role)
+    else:
+        jobs = service.list_jobs()
+
+    return render_template("jobs.html", jobs=jobs, search_role=search_role)
 
 
 @app.route("/applications")

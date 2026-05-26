@@ -3,6 +3,16 @@
 {% block content %}
   <div class="card">
     <h2>Jobs</h2>
+    <form method="get" action="{{ url_for('jobs') }}">
+      <label for="role">Search role or department</label>
+      <input id="role" name="role" type="text" placeholder="e.g. Backend Engineer, Marketing, Remote" value="{{ search_role }}" />
+      <button type="submit">Show suggestions</button>
+    </form>
+
+    {% if search_role %}
+      <p>Showing suggested jobs for: <strong>{{ search_role }}</strong></p>
+    {% endif %}
+
     {% if jobs %}
       <table>
         <tr><th>ID</th><th>Title</th><th>Department</th><th>Location</th></tr>
@@ -16,7 +26,7 @@
         {% endfor %}
       </table>
     {% else %}
-      <p>No jobs available yet.</p>
+      <p>No jobs match your search yet.</p>
     {% endif %}
   </div>
 {% endblock %}

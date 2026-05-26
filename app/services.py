@@ -52,6 +52,13 @@ class ATSService:
         rows = self.storage.fetchall("SELECT * FROM jobs ORDER BY id")
         return [self._job_from_row(row) for row in rows]
 
+    def search_jobs(self, query: str) -> List[Job]:
+        rows = self.storage.fetchall(
+            "SELECT * FROM jobs WHERE title LIKE ? OR department LIKE ? OR location LIKE ? ORDER BY id",
+            (f"%{query}%", f"%{query}%", f"%{query}%"),
+        )
+        return [self._job_from_row(row) for row in rows]
+
     def list_applications(self) -> List[Application]:
         rows = self.storage.fetchall("SELECT * FROM applications ORDER BY id")
         return [self._application_from_row(row) for row in rows]
