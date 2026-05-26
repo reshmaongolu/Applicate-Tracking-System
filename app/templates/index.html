@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="card">
+    <h2>Dashboard</h2>
+    <p>Use the links above to manage candidates, jobs, and applications.</p>
+  </div>
+  <div class="card">
+    <h3>Latest Candidates</h3>
+    {% if candidates %}
+      <table>
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Skills</th></tr>
+        {% for candidate in candidates %}
+          <tr>
+            <td>{{ candidate.id }}</td>
+            <td>{{ candidate.name }}</td>
+            <td>{{ candidate.email }}</td>
+            <td>{{ ', '.join(candidate.skills) }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>No candidates yet.</p>
+    {% endif %}
+  </div>
+  <div class="card">
+    <h3>Latest Jobs</h3>
+    {% if jobs %}
+      <table>
+        <tr><th>ID</th><th>Title</th><th>Department</th><th>Location</th></tr>
+        {% for job in jobs %}
+          <tr>
+            <td>{{ job.id }}</td>
+            <td>{{ job.title }}</td>
+            <td>{{ job.department }}</td>
+            <td>{{ job.location }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>No jobs yet.</p>
+    {% endif %}
+  </div>
+  <div class="card">
+    <h3>Latest Applications</h3>
+    {% if applications %}
+      <table>
+        <tr><th>ID</th><th>Candidate</th><th>Job</th><th>Status</th></tr>
+        {% for application in applications %}
+          <tr>
+            <td>{{ application.id }}</td>
+            <td>{{ application.candidate_id }}</td>
+            <td>{{ application.job_id }}</td>
+            <td><span class="badge">{{ application.status }}</span></td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>No applications yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="card">
+    <h2>Add Job</h2>
+    <form method="post">
+      <label for="title">Title</label>
+      <input id="title" name="title" type="text" required />
+
+      <label for="department">Department</label>
+      <input id="department" name="department" type="text" required />
+
+      <label for="location">Location</label>
+      <input id="location" name="location" type="text" placeholder="Remote" />
+
+      <button type="submit">Create Job</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Applicant Tracking System</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+    header { background: #1f2937; color: white; padding: 16px; }
+    nav a { color: #cbd5e1; margin-right: 16px; text-decoration: none; }
+    nav a:hover { color: white; }
+    main { padding: 24px; max-width: 1000px; margin: auto; }
+    .card { background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 20px; padding: 18px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 10px; border-bottom: 1px solid #e5e7eb; }
+    th { background: #f8fafc; }
+    .badge { padding: 4px 10px; border-radius: 999px; background: #3b82f6; color: white; font-size: 0.8rem; }
+    form label { display: block; margin-top: 14px; font-weight: 600; }
+    form input, form select, form textarea { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; margin-top: 6px; }
+    form button { margin-top: 16px; padding: 10px 18px; border: none; border-radius: 8px; background: #2563eb; color: white; cursor: pointer; }
+    .flash { padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; }
+    .flash.success { background: #d1fae5; color: #065f46; }
+    .flash.error { background: #fee2e2; color: #991b1b; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Applicant Tracking System</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Dashboard</a>
+      <a href="{{ url_for('candidates') }}">Candidates</a>
+      <a href="{{ url_for('jobs') }}">Jobs</a>
+      <a href="{{ url_for('applications') }}">Applications</a>
+      <a href="{{ url_for('add_candidate') }}">Add Candidate</a>
+      <a href="{{ url_for('add_job') }}">Add Job</a>
+      <a href="{{ url_for('submit_application') }}">Submit Application</a>
+    </nav>
+  </header>
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

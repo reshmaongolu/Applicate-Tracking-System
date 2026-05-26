@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="card">
+    <h2>Submit Application</h2>
+    <form method="post">
+      <label for="candidate_id">Candidate</label>
+      <select id="candidate_id" name="candidate_id" required>
+        <option value="">Select a candidate</option>
+        {% for candidate in candidates %}
+          <option value="{{ candidate.id }}">{{ candidate.name }} ({{ candidate.email }})</option>
+        {% endfor %}
+      </select>
+
+      <label for="job_id">Job</label>
+      <select id="job_id" name="job_id" required>
+        <option value="">Select a job</option>
+        {% for job in jobs %}
+          <option value="{{ job.id }}">{{ job.title }} - {{ job.department }}</option>
+        {% endfor %}
+      </select>
+
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+{% endblock %}

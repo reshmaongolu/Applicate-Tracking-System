@@ -1,0 +1,16 @@
+[project]
+name = "applicant_tracking_system"
+version = "0.1.0"
+description = "A simple Python applicant tracking system with CLI and SQLite storage."
+authors = [
+    { name = "Your Name", email = "you@example.com" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.1",
+    "Flask>=2.3",
+]
+
+[project.scripts]
+ats = "app.main:main"
